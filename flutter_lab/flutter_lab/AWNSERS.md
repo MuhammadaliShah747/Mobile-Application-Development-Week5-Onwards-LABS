@@ -6,3 +6,7 @@ ans) runApp() receives the root widget of the entire Flutter application and att
 Why are the fields of a StatelessWidget final? What would the 
 compiler say if you removed final? 
 ans) The fields of a StatelessWidget must be final as stateless widgets are fixed. If you remove final, there will be an error “Instance fields of stateless widgets should be final” because mutable state inside a stateless widget violates the architectural constraints of flutter's rendering pipeline
+
+ Draw the widget tree of your screen on paper, from LabApp down 
+to the three Text widgets. How many levels deep is the Text('Max: ..')? 
+ans) 7 Levels
