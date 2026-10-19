@@ -23,3 +23,12 @@ Hot reload while the count is 12. Does it stay 12? Now do a hot
 restart. Explain the difference using the words widget and State.
 
 ans) Hot reload preserv the current State object in memory, so the count stays 12. A hot restart deletes the running app instance and its memory, destroying the State object and reseting the count back to the initial start value defined by the widget blueprint.
+
+
+ Before the fix, you tapped three times. What was the value of 
+_clicks inside the State, and what did the screen show? Write both numbers (you need the first for 
+ANSWERS.md, A3).
+
+ans) Inside the State, the value became 12 because the variable was successfully updating in memory.
+However, the screen still showed 0 because without setState, Flutter never knew to rebuild the UI.
+That internal value of 12 is what you need to write for A3 in your ANSWERS.md file.

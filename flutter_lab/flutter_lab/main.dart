@@ -73,8 +73,9 @@ class HomePage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            const SizedBox(height: 12),
             const Tally(),
+            const SizedBox(height: 12),
+            const BuggyCounter(),
           ],
         ),
       ),
@@ -216,7 +217,10 @@ class _BuggyCounterState extends State<BuggyCounter> {
         ElevatedButton(
           key: const Key('bug-button'),
           onPressed: () {
-            _clicks += bugStep;
+            // FIX IS HERE: Wrap this line in setState
+            setState(() {
+              _clicks += bugStep;
+            });
           },
           child: Text('+$bugStep'),
         ),
