@@ -10,3 +10,6 @@ ans) The fields of a StatelessWidget must be final as stateless widgets are fixe
  Draw the widget tree of your screen on paper, from LabApp down 
 to the three Text widgets. How many levels deep is the Text('Max: ..')? 
 ans) 7 Levels
+
+Why does GoalBanner not need setState? What would you have to do to make it show a new count?
+ans) GoalBanner doesn't need setState because it's just a StatelessWidget that displays whatever data is handed to it. If you want it to show a new count, a parent widget has to rebuild and pass down a completely new count value to it.
