@@ -17,3 +17,9 @@ ans) GoalBanner doesn't need setState because it's just a StatelessWidget that d
 The class Tally has no fields that change, yet _TallyState does. 
 Why are there two classes?
 ans) Widgets are immutable configuration blueprints that gets destroyed and recreated constantly by Flutter, whereas the state object remian in memory across those rebuilds to preserve data like  counter variable
+
+
+Hot reload while the count is 12. Does it stay 12? Now do a hot 
+restart. Explain the difference using the words widget and State.
+
+ans) Hot reload preserv the current State object in memory, so the count stays 12. A hot restart deletes the running app instance and its memory, destroying the State object and reseting the count back to the initial start value defined by the widget blueprint.
