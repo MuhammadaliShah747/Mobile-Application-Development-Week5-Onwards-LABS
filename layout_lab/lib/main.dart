@@ -116,6 +116,8 @@ class HomePage extends StatelessWidget {
             const InfoPanel(),
             const SizedBox(height: 12),
             const SummaryRow(),
+            const SizedBox(height: 12),
+            const ShareRow(),
           ],
         ),
       ),
@@ -143,20 +145,11 @@ class SettingsCard extends StatelessWidget {
   }
 }
 
-// ==================== STEP 7: SUMMARY ROW (FIXED WITH EXPANDED) ====================
 class SummaryRow extends StatelessWidget {
   const SummaryRow({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Think Question Answer Comment:
-    // Q: Why does wrapping a Text in Expanded make it wrap its words?
-    // Use the idea "constraints go down, sizes go up" from slide 13.
-    // A: Constraints go down, sizes go up. A Row gives its children unconstrained horizontal
-    // space by default, causing overflow. Wrapping in Expanded forces a tight upper
-    // width constraint down onto the Text, forcing it to break and wrap its words
-    // inside that bounded width.
-
     return Row(
       children: [
         Expanded(
@@ -367,3 +360,39 @@ class InfoPanel extends StatelessWidget {
     );
   }
 }
+
+class ShareRow extends StatelessWidget {
+  const ShareRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      key: const Key('share-row'),
+      children: [
+        SizedBox(
+          key: const Key('fixed'),
+          width: fixedW,
+          child: ElevatedButton(onPressed: () {}, child: const Text('F')),
+        ),
+        Expanded(
+          flex: flexA,
+          child: ElevatedButton(
+            key: const Key('exp'),
+            onPressed: () {},
+            child: const Text('Exp'),
+          ),
+        ),
+        Flexible(
+          flex: flexB,
+          child: ElevatedButton(
+            key: const Key('flex'),
+            onPressed: () {},
+            child: const Text('Flex'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
