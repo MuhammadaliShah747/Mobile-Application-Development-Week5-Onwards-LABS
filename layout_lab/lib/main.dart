@@ -96,7 +96,6 @@ class LabApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,15 +111,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 12),
             const Clock(),
             const SizedBox(height: 12),
-            Row(
-              children: [
-                Tile(tileA),
-                const SizedBox(width: 8),
-                Tile(tileB),
-                const SizedBox(width: 8),
-                Tile(tileC),
-              ],
-            ),
+            const SwapBoard(), // <-- Replaced temporary Row with SwapBoard here!
           ],
         ),
       ),
@@ -128,7 +119,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// ---- Provided: shows YOUR numbers. Keep it on the page. Do not rename.
 class SettingsCard extends StatelessWidget {
   const SettingsCard({super.key});
 
@@ -285,6 +275,44 @@ class _TileState extends State<Tile> {
         });
       },
       child: Text('${widget.label} : $taps'),
+    );
+  }
+}
+
+// ==================== STEP 5: SWAP BOARD ====================
+class SwapBoard extends StatefulWidget {
+  const SwapBoard({super.key});
+
+  @override
+  State<SwapBoard> createState() => _SwapBoardState();
+}
+
+class _SwapBoardState extends State<SwapBoard> {
+  late List<Widget> tiles = [
+    Tile(tileA, key: ValueKey(tileA)),
+    Tile(tileB, key: ValueKey(tileB)),
+    Tile(tileC, key: ValueKey(tileC)),
+  ];
+
+  void swap() {
+    setState(() {
+      tiles = tiles.reversed.toList();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: tiles),
+        const SizedBox(height: 8),
+        ElevatedButton(
+          key: const Key('swap'),
+          onPressed: swap,
+          child: const Text('Swap'),
+        ),
+      ],
     );
   }
 }
