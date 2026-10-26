@@ -119,7 +119,9 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 12),
             const ShareRow(),
             const SizedBox(height: 12),
-            const StyledContainer(),
+            const InfoBox(),
+            const SizedBox(height: 12),
+            const StampStack(),
           ],
         ),
       ),
@@ -397,35 +399,50 @@ class ShareRow extends StatelessWidget {
   }
 }
 
-class StyledContainer extends StatelessWidget {
-  const StyledContainer({super.key});
+class InfoBox extends StatelessWidget {
+  const InfoBox({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: const Key('container'),
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
-      padding: const EdgeInsets.all(16.0),
+      key: const Key('info-box'),
+      margin: EdgeInsets.all(boxMargin),
+      padding: EdgeInsets.all(boxPad),
       decoration: BoxDecoration(
-        color: Colors.blue.shade50,
-        border: Border.all(color: Colors.blue.shade700, width: 2.0),
-        borderRadius: BorderRadius.circular(12.0),
+        color: swatches[hue]!.shade100,
+        border: Border.all(width: boxBorder),
+        borderRadius: BorderRadius.circular(boxRadius),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text(
-            'Lab Completed.',
-            key: Key('container-title'),
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          SizedBox(height: 4),
-          Text(
-            'All 9 layout steps, keys, and constraints have been implemented.',
-            key: Key('container-desc'),
-          ),
-        ],
-      ),
+      child: Text('Course: $course', key: const Key('box-text')),
+    );
+  }
+}
+
+class StampStack extends StatelessWidget {
+  const new({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          key: const Key('layer-base'),
+          width: 300,
+          height: 120,
+          color: Colors.grey.shade300,
+        ),
+
+        Positioned(
+          top: dotTop,
+          right: dotRight,
+          child: const Icon(Icons.star, key: Key('dot-top')),
+        ),
+        Positioned(
+          bottom: dotBottom,
+          left: dotLeft,
+          child: const Icon(Icons.circle, key: Key('dot-bottom')),
+        ),
+      ],
     );
   }
 }
