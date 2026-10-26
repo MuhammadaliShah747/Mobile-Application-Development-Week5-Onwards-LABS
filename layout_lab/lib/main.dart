@@ -111,7 +111,8 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 12),
             const Clock(),
             const SizedBox(height: 12),
-            const SwapBoard(), // <-- Replaced temporary Row with SwapBoard here!
+            const SwapBoard(),
+            const InfoPanel(),
           ],
         ),
       ),
@@ -279,7 +280,6 @@ class _TileState extends State<Tile> {
   }
 }
 
-// ==================== STEP 5: SWAP BOARD ====================
 class SwapBoard extends StatefulWidget {
   const SwapBoard({super.key});
 
@@ -311,6 +311,39 @@ class _SwapBoardState extends State<SwapBoard> {
           key: const Key('swap'),
           onPressed: swap,
           child: const Text('Swap'),
+        ),
+      ],
+    );
+  }
+}
+
+class InfoPanel extends StatelessWidget {
+  const InfoPanel({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          key: const Key('info-row'),
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text('Start: $startSec s', key: const Key('row-a')),
+            Text('Tick: $tick s', key: const Key('row-b')),
+            Text('Stop: $stopAt s', key: const Key('row-c')),
+          ],
+        ),
+        const SizedBox(height: 12),
+
+        Column(
+          key: const Key('info-col'),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Name: $studentName', key: const Key('col-a')),
+            Text('Roll no: $rollNo', key: const Key('col-b')),
+            Text('Course: $course', key: const Key('col-c')),
+          ],
         ),
       ],
     );
