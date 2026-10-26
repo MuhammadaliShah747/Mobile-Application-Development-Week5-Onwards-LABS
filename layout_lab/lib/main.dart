@@ -173,11 +173,12 @@ class Clock extends StatefulWidget {
 class _ClockState extends State<Clock> {
   late Timer timer;
   int _seconds = startSec;
+  int builds = 0;
 
   @override
   void initState() {
     super.initState();
-
+    lifecycleLog.add('initState');
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _seconds += tick;
@@ -192,11 +193,20 @@ class _ClockState extends State<Clock> {
   @override
   void dispose() {
     timer.cancel();
+    lifecycleLog.add('dispose');
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Text('Session: $_seconds s', key: const Key('clock'));
+    builds++;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Session: $_seconds s', key: const Key('clock')),
+        const SizedBox(height: 4),
+        Text('Builds: $builds', key: const Key('builds')),
+      ],
+    );
   }
 }
