@@ -138,7 +138,6 @@ class SettingsCard extends StatelessWidget {
   }
 }
 
-// ---- Provided for Step 7. It overflows on purpose. Do not rename anything.
 class SummaryRow extends StatelessWidget {
   const SummaryRow({super.key});
 
@@ -206,6 +205,39 @@ class _ClockState extends State<Clock> {
         Text('Session: $_seconds s', key: const Key('clock')),
         const SizedBox(height: 4),
         Text('Builds: $builds', key: const Key('builds')),
+        const SizedBox(height: 4),
+        Probe(seconds: _seconds),
+      ],
+    );
+  }
+}
+
+class Probe extends StatelessWidget {
+  final int seconds;
+  const Probe({super.key, required this.seconds});
+
+  @override
+  Widget build(BuildContext context) {
+    final bool above =
+        context.findAncestorWidgetOfExactType<Scaffold>() != null;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Seen at: $seconds s', key: const Key('probe-seen')),
+        Text(
+          'Widget #${identityHashCode(this)}',
+          key: const Key('probe-widget'),
+        ),
+        Text(
+          'Element #${identityHashCode(context)}',
+          key: const Key('probe-element'),
+        ),
+        Text(
+          'Context belongs to: ${context.widget.runtimeType}',
+          key: const Key('probe-context'),
+        ),
+        Text('Scaffold above me: $above', key: const Key('probe-above')),
       ],
     );
   }
