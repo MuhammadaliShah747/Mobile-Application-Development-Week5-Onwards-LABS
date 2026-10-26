@@ -112,7 +112,10 @@ class HomePage extends StatelessWidget {
             const Clock(),
             const SizedBox(height: 12),
             const SwapBoard(),
+            const SizedBox(height: 12),
             const InfoPanel(),
+            const SizedBox(height: 12),
+            const SummaryRow(),
           ],
         ),
       ),
@@ -140,24 +143,39 @@ class SettingsCard extends StatelessWidget {
   }
 }
 
+// ==================== STEP 7: SUMMARY ROW (FIXED WITH EXPANDED) ====================
 class SummaryRow extends StatelessWidget {
   const SummaryRow({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Think Question Answer Comment:
+    // Q: Why does wrapping a Text in Expanded make it wrap its words?
+    // Use the idea "constraints go down, sizes go up" from slide 13.
+    // A: Constraints go down, sizes go up. A Row gives its children unconstrained horizontal
+    // space by default, causing overflow. Wrapping in Expanded forces a tight upper
+    // width constraint down onto the Text, forcing it to break and wrap its words
+    // inside that bounded width.
+
     return Row(
       children: [
-        Text(
-          'Part A: read the widget tree of the $course board from top to bottom.',
-          key: const Key('sum-a'),
+        Expanded(
+          child: Text(
+            'Part A: read the widget tree of the $course board from top to bottom.',
+            key: const Key('sum-a'),
+          ),
         ),
-        Text(
-          'Part B: build each box from small widgets and never extend a built-in class.',
-          key: const Key('sum-b'),
+        Expanded(
+          child: Text(
+            'Part B: build each box from small widgets and never extend a built-in class.',
+            key: const Key('sum-b'),
+          ),
         ),
-        Text(
-          'Part C: break the layout on purpose, then fix it with Expanded or Wrap.',
-          key: const Key('sum-c'),
+        Expanded(
+          child: Text(
+            'Part C: break the layout on purpose, then fix it with Expanded or Wrap.',
+            key: const Key('sum-c'),
+          ),
         ),
       ],
     );
