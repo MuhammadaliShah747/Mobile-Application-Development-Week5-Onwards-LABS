@@ -118,6 +118,8 @@ class HomePage extends StatelessWidget {
             const SummaryRow(),
             const SizedBox(height: 12),
             const ShareRow(),
+            const SizedBox(height: 12),
+            const StyledContainer(),
           ],
         ),
       ),
@@ -395,4 +397,35 @@ class ShareRow extends StatelessWidget {
   }
 }
 
+class StyledContainer extends StatelessWidget {
+  const StyledContainer({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: const Key('container'),
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        border: Border.all(color: Colors.blue.shade700, width: 2.0),
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text(
+            'Lab Completed.',
+            key: Key('container-title'),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          SizedBox(height: 4),
+          Text(
+            'All 9 layout steps, keys, and constraints have been implemented.',
+            key: Key('container-desc'),
+          ),
+        ],
+      ),
+    );
+  }
+}
